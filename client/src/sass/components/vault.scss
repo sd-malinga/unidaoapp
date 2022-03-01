@@ -1,0 +1,46 @@
+.vaultcontent {
+    display: flex;
+    flex-direction: column;
+    
+}
+
+.openvault {
+    display: flex;
+    flex-direction: column;
+    margin-right: 10vw;
+    margin-left: 10vw;
+    align-items: center;
+}
+
+.openvaultbtn{
+    display: flex;
+    width: max-content;
+}
+
+.vaultdetails{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    font-size: 10px;
+    margin-right:10vw;
+    margin-left:10vw;
+
+}
+
+.depositform {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.depositform-form {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.vaultoptions {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}

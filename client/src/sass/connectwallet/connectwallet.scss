@@ -1,0 +1,14 @@
+.wallettab {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    background-color: rgb(187, 226, 226);
+    height: 10vh;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.connectwallet{
+    right:0px;
+    position: absolute;
+}

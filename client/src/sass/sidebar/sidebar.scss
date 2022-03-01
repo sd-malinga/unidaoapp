@@ -1,0 +1,19 @@
+.sidebar{
+    grid-column: 1;
+    background-color: rgb(80, 218, 153);
+    height: 100vh;
+    
+}
+
+.sidebar_content{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.sidebar_options{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+
+}

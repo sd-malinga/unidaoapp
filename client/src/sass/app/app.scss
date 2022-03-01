@@ -1,0 +1,28 @@
+.appgrid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+  
+   
+}
+
+.appside {
+    display: flex;
+    flex-direction: column;
+    grid-column: 2/4;
+    background-color: rgb(237, 245, 207);
+}
+
+.mainapp {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    background-color: aliceblue;
+}
+
+
+.linkbtn{
+    background-color: #ffa319;
+    text-decoration: none;
+    padding: 5px;
+    border-radius: 10px;
+}
