@@ -164,6 +164,25 @@
             "constant": true,
             "inputs": [
                 {
+                    "name": "",
+                    "type": "address"
+                }
+            ],
+            "name": "debtor",
+            "outputs": [
+                {
+                    "name": "nov",
+                    "type": "uint256"
+                }
+            ],
+            "payable": false,
+            "stateMutability": "view",
+            "type": "function"
+        },
+        {
+            "constant": true,
+            "inputs": [
+                {
                     "name": "amount_",
                     "type": "uint256"
                 }
@@ -262,14 +281,18 @@
             "constant": true,
             "inputs": [
                 {
-                    "name": "add",
+                    "name": "",
                     "type": "address"
-                }
-            ],
-            "name": "cupNoOf",
-            "outputs": [
+                },
                 {
                     "name": "",
+                    "type": "uint256"
+                }
+            ],
+            "name": "cupNo",
+            "outputs": [
+                {
+                    "name": "ino",
                     "type": "bytes32"
                 }
             ],
@@ -425,20 +448,6 @@
                 {
                     "name": "",
                     "type": "uint256"
-                }
-            ],
-            "payable": false,
-            "stateMutability": "view",
-            "type": "function"
-        },
-        {
-            "constant": true,
-            "inputs": [],
-            "name": "cupNo",
-            "outputs": [
-                {
-                    "name": "",
-                    "type": "bytes32"
                 }
             ],
             "payable": false,

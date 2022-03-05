@@ -2,6 +2,7 @@
     grid-column: 1;
     background-color: rgb(80, 218, 153);
     height: 100vh;
+    background: #ffffff24;
     
 }
 
@@ -9,6 +10,8 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    gap: 72px;
+    
 }
 .sidebar_options{
     display: flex;

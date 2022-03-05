@@ -1,7 +1,9 @@
 .appgrid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-  
+    background: url('./ellipse2.svg');
+    background-size: cover;
+   
    
 }
 
@@ -9,14 +11,25 @@
     display: flex;
     flex-direction: column;
     grid-column: 2/4;
-    background-color: rgb(237, 245, 207);
+    //background-color: rgb(237, 245, 207);
 }
-
+.maincontent{
+    color: white;
+}
+.beautifulbtn {
+        color: rgb(29, 171, 152);
+    background: #ffffff21;
+    border: none;
+    border-radius: 10px;
+    height: 40px;
+    width: 81px;
+}
 .mainapp {
     display: flex;
     flex-direction: column;
     position: relative;
-    background-color: aliceblue;
+    color: white;
+  //  background-color: aliceblue;
 }
 
 
@@ -26,3 +39,117 @@
     padding: 5px;
     border-radius: 10px;
 }
+
+.apphome{
+    grid-column: 1/4;
+    display: flex;
+    flex-direction: column;
+    background-color: #000000;
+    background: url('./ellipse2.svg');
+    background-size: cover;
+    height: 100VH;
+    align-items: center;
+    width: 100vw;
+}
+
+.apphome_header{
+    display: flex;
+    flex-direction: row;
+    //background-color: aqua;
+    width: 80vw;
+    height: 10vh;
+    align-items: center;
+    justify-content: space-between;
+
+}
+
+.appheaderlogo{
+    height: 31px;
+    width: 96px;
+    background: url(./Fyqg9KY.png);
+    background-size: 100%  100%;
+}
+
+.appheaderbtn{
+    //height: 43px;
+    //width: 161px;
+    display: flex;
+}
+
+.apphomecontent{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 770px;
+    margin-top: 45px;
+    color: white;
+}
+
+.contentheading{
+    /* Making bitcoin more than an investment. */
+
+width: 770px;
+
+
+
+font-style: normal;
+font-weight: 800;
+font-size: 60px;
+line-height: 110%;
+/* or 88px */
+text-align: center;
+letter-spacing: -0.04em;
+
+/* white */
+color: #FFFFFF;
+
+
+}
+.connectapphome{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    width: 225px;
+    padding: 15px;
+}
+
+
+/* Popup style */
+.popup-box {
+    position: fixed;
+    background: #00000050;
+    width: 100%;
+    height: 100vh;
+    top: 0;
+    left: 0;
+  }
+  
+  .box {
+    position: relative;
+    width: 70%;
+    margin: 0 auto;
+    height: auto;
+    max-height: 70vh;
+    margin-top: calc(100vh - 85vh - 20px);
+    background: #040c0c;
+    border-radius: 4px;
+    padding: 20px;
+    border: 1px solid #999;
+    overflow: auto;
+  }
+  
+  .close-icon {
+    content: 'x';
+    cursor: pointer;
+    position: fixed;
+    right: calc(15% - 30px);
+    top: calc(100vh - 85vh - 33px);
+    background: #ededed;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    line-height: 20px;
+    text-align: center;
+    border: 1px solid #999;
+    font-size: 20px;
+  }

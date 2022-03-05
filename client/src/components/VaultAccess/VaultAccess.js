@@ -4,8 +4,9 @@ import ContractAddresses from '../ContractsData/ContractAddresses.json';
 import ContractABIs from '../ContractsData/ContractABIs.json';
 import { ethers } from 'ethers';
 import { Link } from 'react-router-dom';
-
+import { useParams } from 'react-router';
 const VaultAccess = () => {
+    const { id } = useParams();
     
     const userwallet= sessionStorage.getItem('wallet');
     const[uservault, setvault] = useState('');
@@ -36,6 +37,8 @@ const VaultAccess = () => {
             );
             const VaultOpen = await vaultinstance.functions.open();
             console.log(VaultOpen);
+            const cop = await VaultOpen.wait();
+            window.open(`/vault/access/${id}`, '_self')
             } catch(err){window.alert('Try Again')}
         } else {window.alert('Please Connect to Apothem Network')}
     }
@@ -44,18 +47,15 @@ const VaultAccess = () => {
             return (
                 <Fragment>
                    <div className='vaultdetails'>
-                    <p>Cup No: {uservault.uservault.ino}</p>
-                    <p>Owner: {uservault.uservault.owner}</p>
-                    <p>Ecoin Balance: {(uservault.uservault.collateralE)/10**10}</p>
-                    <p>XDC Balance: {(uservault.uservault.collateralX)/10**18}</p>
-                    <p>Stablecoin Minted: {(uservault.uservault.scm)/10**18}</p>
-                    <p>Debt: {(uservault.uservault.debt)/10**18}</p>
-                    <p>Tax: {(uservault.uservault.tax/10**18)}</p>
-
+                    
+                    <p>Owner: {uservault.uservault[0].owner}</p>
+                    <p>Locked XDC: {(uservault.uservault[0].collateralX)/10**18}</p>
+                    <p>Locked ECOIN: {(uservault.uservault[0].collateralE)/10**10}</p>
                     <div className='vaultoptions'>
-                    <Link to='/vault/deposit' className='linkbtn'>Deposit Collateral</Link>
-                    <Link to='/vault/payback' className='linkbtn'>Pay Back</Link>
-                    <Link to='/vault/getcollateral' className='linkbtn'>Get Collateral</Link>
+                    
+                    <button onClick={()=>{window.open(`/vault/deposit/${id}`, '_self')}}  className='beautifulbtn'>Deposit Collateral</button>
+                    <button onClick={()=>{window.open(`/vault/payback/${id}`, '_self')}} className='beautifulbtn'>Pay Back</button>
+                    <button onClick={()=>{window.open(`/vault/getcollateral/${id}`, '_self')}} className='beautifulbtn'>Get Collateral</button>
                     </div>
 
                    </div>
@@ -72,7 +72,7 @@ const VaultAccess = () => {
             <Fragment>
                 <div className='openvault'>
                     <p>Sorry You have no vault. Please Open a new Vault.</p>
-                    <button className='openvaultbtn' onClick={()=>{openvault()}}>Open A Vault</button>
+                    <button className=' beautifulbtn' onClick={()=>{openvault()}}>Open A Vault</button>
                 </div>
             </Fragment>
 

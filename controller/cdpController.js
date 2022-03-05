@@ -38,9 +38,17 @@ const cdp={
             userwallet = req.params.wallet;          
         try {
              console.log("check2" + userwallet)
-             const usercup = await cdpInstance.methods.cupNoOf(userwallet).call();
-             if (usercup !== "0x0000000000000000000000000000000000000000000000000000000000000000") {
-             const uservault = await cdpInstance.methods.cups(usercup).call();
+             const usercup = await cdpInstance.methods.debtor(userwallet).call();
+             if (usercup=="0"){
+                return res.status(200).json("No Vault")
+             }
+             if (usercup !== "0") {
+                 let uservault =[];
+                 for(i = usercup; i>0; i--){
+             const uservault2 = await cdpInstance.methods.cupNo(userwallet, i).call();
+             const final = await cdpInstance.methods.cups(uservault2).call();
+                        uservault.push(final);
+            }
              return res.status(200).json({uservault})
              } else {return res.status(200).json("No Vault")}
             }  catch (err) {

@@ -3,9 +3,19 @@ import { getUserVault } from '../../services/cdpServices';
 import ContractAddresses from '../ContractsData/ContractAddresses.json';
 import ContractABIs from '../ContractsData/ContractABIs.json';
 import { ContractFactory, ethers } from 'ethers';
-
+import Popup from '../Popup';
+import { useParams } from 'react-router';
 
 const VaultDeposit = () => {
+    const { id } = useParams();
+
+const [isOpen, setIsOpen] = useState(false);
+ 
+  const togglePopup = () => {
+    setIsOpen(!isOpen);
+  }
+const[message, setmessage] = useState('')
+  
     const userwallet= sessionStorage.getItem('wallet');
     const[uservault, setvault] = useState('');
 
@@ -24,7 +34,7 @@ const VaultDeposit = () => {
      },[]);
 
      if (uservault ==='No Vault') {
-         window.open('/vault/access', '_self')
+         window.open(`/vault/access/${id}`, '_self')
      }
     
      const handleSubmit = async (e) => {
@@ -58,11 +68,11 @@ const VaultDeposit = () => {
                 const receipt2 = await approve.wait();
                 console.log(receipt2)
 
-                const deposit = await vaultinstance.depositEcoin(uservault.uservault.ino, BigInt((amount)*10**10));
+                const deposit = await vaultinstance.depositEcoin(uservault.uservault[id].ino, BigInt((amount)*10**10));
                 const receipt = await deposit.wait();
                 if (receipt.status == true) {
-                    window.alert("STABLE COIN ARE MINTED SUCCESSFULLY")
-                    window.open('/vault/access', '_self')
+                    setmessage("XUSD has been deposited to your wallet successfully.")
+                    togglePopup()
                 } else {console.log(receipt)} 
             
                 } catch (err) {console.log(err)}
@@ -84,11 +94,11 @@ const VaultDeposit = () => {
                 );
                         /* global BigInt */
 
-                const deposit = await vaultinstance.depositXDC(uservault.uservault.ino, BigInt((amount)*10**18), {value: BigInt((amount)*10**18)});
+                const deposit = await vaultinstance.depositXDC(uservault.uservault[id].ino, BigInt((amount)*10**18), {value: BigInt((amount)*10**18)});
                 const receipt = await deposit.wait();
                 if (receipt.status == true) {
-                    window.alert("STABLE COIN ARE MINTED SUCCESSFULLY")
-                    window.open('/vault/access', '_self')
+                    setmessage("XUSD has been deposited to your wallet successfully.")
+                    togglePopup()
                 } else {console.log(receipt)} 
             
                 } catch (err) {console.log(err)}
@@ -102,16 +112,24 @@ const VaultDeposit = () => {
             <div className='depositform'>
                 <form className='depositform-form' onSubmit={handleSubmit}>
                     <label>Collateral to Deposit</label>
-                    <select id='colname'>
-                        <option value='XDC'>XDC</option>
-                        <option value='ECOIN'>ECOIN</option>                    
+                    <select id='colname' className='beautifulbtn'>
+                        <option value='XDC' className='beautifulbtn'>XDC</option>
+                        <option value='ECOIN' className='beautifulbtn'>ECOIN</option>                    
                     </select>
                     <label>Amount</label>
-                    <input type='number' id='amount' required />
-                    <button type='submit'>Deposit</button>
+                    <input type='number' id='amount' required className='beautifulbtn'/>
+                    <button type='submit' className='beautifulbtn'>Deposit</button>
                                         
                 </form>
             </div>
+            {isOpen && <Popup
+        content={<>
+        <b>Alert</b>
+        <p>{message}</p>
+        <button onClick={()=>{window.open(`/vault/access/${id}`, '_self')}}>Close</button>
+      </>}
+      handleClose={togglePopup}
+    />}
          </Fragment>
 
 

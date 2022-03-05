@@ -8,6 +8,7 @@ import {
  import WalletTab from "../../components/WalletTab/WalletTab";
  import Vault from '../Vault/Vault';
  import Home from "../Home/Home";
+ import AppHome from "./AppHome";
 const Appside = ()=> {
 
     return(
@@ -15,14 +16,15 @@ const Appside = ()=> {
             <div className="appside">
                <WalletTab />
                 <Switch>
-                        <Route exact path='/' component={Home}/>
+                        
+                        <Route  path='/home' component={Home}/>
                             
 
                         <Route path='/vault' component={Vault} />
                            
                         
                         
-                    </Switch>
+                </Switch>
              
             </div>
 

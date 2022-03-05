@@ -35,10 +35,17 @@ const WalletTab = ()=> {
         <Fragment>
             <div className="wallettab">
                 <div className="Walletaddress">
-                    <p>{ address}</p>
+                    {/* <p>{ address}</p> */}
                 </div>
                 <div className="connectwallet">
-                    <button onClick={()=>{connectWallet()}}>{walletstatus}</button>
+                    <button onClick={()=>{connectWallet()}} style={{
+                            color: 'rgb(29, 171, 152)',
+                            background: 'rgba(255, 255, 255, 0.08)',
+                            border: 'none',
+                            borderRadius: '10px',
+                            height: '40px',
+                            width: '81px'
+                        }} >{walletstatus}</button>
                 </div>
                     
              </div>

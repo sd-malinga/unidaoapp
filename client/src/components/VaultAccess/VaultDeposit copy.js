@@ -108,7 +108,7 @@ const VaultDeposit = () => {
                     </select>
                     <label>Amount</label>
                     <input type='number' id='amount' required />
-                    <button type='submit'>Deposit</button>
+                    <button type='submit' className='beautifulbtn'>Deposit</button>
                                         
                 </form>
             </div>

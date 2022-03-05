@@ -1,9 +1,10 @@
 {
     "ecoin": "0x0f947627C88Bd7eD40e1CC01C38b3db8D314320B",
     "burner": "0xAbdeF9AF2B9A727201bE03538de0Cf670A476278",
-    "sc" : "0x35931807DEff1a81195aA8948279B3a8931D8ffb",
-    "gov": "0xf84A5Ab8280B5A02CA73D1bcD03C2d81d094b2BD",
-    "cdp": "0x0E71B3f1D669027EE7f5E1F6C8f387C2Df65a6f9",
-    "lqv": "0xdBb811A9db5c6Cf4A39FfF768b09f54433ff8eDa",
-    "rpc": "https://rpc.apothem.network"
+    "sc" : "0x4229D3f9C1731dC4c25e1dA4cB6dc09b6349ADdE",
+    "gov": "0x2450C0A8Fb670844df5d203fa20701577FABc328",
+    "cdp": "0x269255D1927D6f10710CBB2cA7e4e5958a64435d",
+    "lqv": "0x899769b1dcBfe01C6Eb8E8f5a2FEb203351fB22e",
+    "rpc": "https://rpc.apothem.network",
+    "pf": "0xccd47446B3698Ee0f9E7E331f5653a206696B179"
 }
