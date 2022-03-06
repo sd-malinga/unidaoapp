@@ -31,5 +31,39 @@ const sc={
 	
     },
 
+    userdata: async (req, res) => {
+        userwallet = req.params.wallet;   
+	    console.log("check1");
+          
+        try {
+            const  ecoinInstance = await new web3.eth.Contract(
+                contractabis.ecoin,
+                contractaddresses.ecoin
+                );
+            const  govInstance = await new web3.eth.Contract(
+                    contractabis.gov,
+                    contractaddresses.gov
+                    );
+
+         console.log("check2")
+         const scbalance = await scInstance.methods.balanceOf(userwallet).call();
+         const govbalance = await govInstance.methods.balanceOf(userwallet).call();
+         const ecoinbalance = await ecoinInstance.methods.balanceOf(userwallet).call();
+         const xdcbalance = await web3.eth.getBalance(userwallet);
+        const finaldata = {
+            sc: scbalance,
+            gov: govbalance,
+            ecoin: ecoinbalance,
+            xdc: xdcbalance,
+        }
+         return res.status(200).json(finaldata)
+        } catch (err) {
+            return res.status(500).json({msg: err.message})
+        }		 
+	
+    },
+
     }
+
+    
 module.exports = sc;

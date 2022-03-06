@@ -14,8 +14,12 @@ const Vault = () => {
     const userwallet= sessionStorage.getItem('wallet');
     const vaultcheck = async () => {
         const uservault = await getUserVault(userwallet);
+        if(uservault == 'No Vault'){
+            setvault(uservault);
+        } else {
         console.log(uservault.uservault);
         setvault(uservault.uservault)
+        }
         
      };
  
@@ -77,7 +81,7 @@ const Vault = () => {
                    }}>
                     
                    {rendervaults()}
-                   <button className='beautifulbtn' onClick={()=>{openvault()}}>Open More Vault </button>
+                   <button className='beautifulbtn' onClick={()=>{openvault()}}>Create New Vault </button>
                    </div>
                    
                 </Fragment>
@@ -111,7 +115,7 @@ const Vault = () => {
     return(
             <Fragment>
                 <div className='maincontent'>
-                    <h3>Welcome to UniDAO Vaults</h3>    
+                    <h3>Welcome to UNIDAO Vaults</h3>    
 
                    
                     <Switch>

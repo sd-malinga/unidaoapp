@@ -1,11 +1,11 @@
 
 const express = require('express');
-const { totalSupply } = require('../controller/scController');
+const { totalSupply, userdata } = require('../controller/scController');
 const scRouter = express.Router();
 
 
 scRouter.get('/xusdtotalsupply', totalSupply);
-
+scRouter.get('/getuserbalance/:wallet', userdata );
 
 
 

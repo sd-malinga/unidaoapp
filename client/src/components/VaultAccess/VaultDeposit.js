@@ -25,9 +25,14 @@ const[message, setmessage] = useState('')
 
     const vaultcheck = async () => {
         const uservault = await getUserVault(userwallet);
+        if(uservault == 'No Vault'){
+            setvault(uservault);
+        } else {
         console.log(uservault);
-        setvault(uservault);
-        };
+        setvault(uservault)
+        }
+        
+     };
  
      useEffect(()=>{
          vaultcheck()

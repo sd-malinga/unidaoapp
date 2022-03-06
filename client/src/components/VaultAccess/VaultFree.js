@@ -26,9 +26,14 @@ const[message, setmessage] = useState('')
 
     const vaultcheck = async () => {
         const uservault = await getUserVault(userwallet);
+        if(uservault == 'No Vault'){
+            setvault(uservault);
+        } else {
         console.log(uservault);
-        setvault(uservault);
-        };
+        setvault(uservault)
+        }
+        
+     };
 
      useEffect(()=>{
          vaultcheck()
@@ -72,7 +77,7 @@ const[message, setmessage] = useState('')
                     const payback = await vaultinstance.freeXDC(uservault.uservault[id].ino);
                     const receipt = await payback.wait();
                     if (receipt.status == true) {
-                        setmessage(uservault.uservault[id].collateralX/10**18, "XDC have been transferred to your account");
+                        setmessage((uservault.uservault[id].collateralX/10**18) +" XDC have been transferred to your account");
                         togglePopup();
                         } else {console.log(receipt)} 
                     }

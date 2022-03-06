@@ -7,12 +7,15 @@ import Popup from '../Popup';
 import { useParams } from 'react-router';
 
 const VaultPayback = () => {
-
+    const [done, setdone] = useState('');
     const { id } = useParams();
 const [isOpen, setIsOpen] = useState(false);
  
 const togglePopup = () => {
   setIsOpen(!isOpen);
+  if(done =='Done'){
+      window.open(`/vault/access/${id}`, '_self'  )
+  }
 }
 const[message, setmessage] = useState('')
     const userwallet= sessionStorage.getItem('wallet');
@@ -24,9 +27,14 @@ const[message, setmessage] = useState('')
 
     const vaultcheck = async () => {
         const uservault = await getUserVault(userwallet);
+        if(uservault == 'No Vault'){
+            setvault(uservault);
+        } else {
         console.log(uservault);
-        setvault(uservault);
-        };
+        setvault(uservault)
+        }
+        
+     };
  
      useEffect(()=>{
          vaultcheck()
@@ -62,18 +70,21 @@ const[message, setmessage] = useState('')
                 );
                 
                 /* global BigInt */
-                //setmessage("You have to sign three transactions. 1. Approval of Gov Coin. 2. Approval of XUSD. 3. Pay back of debt")
-                //togglePopup()
+                setmessage("You have to sign three transactions. 1. Approval of Gov Coin. 2. Approval of XUSD. 3. Pay back of debt")
+                togglePopup()
+                console.log(uservault.uservault[id].tax)
                 const approve = await govins.approve(ContractAddresses.cdp, BigInt((uservault.uservault[id].tax)));
                 const approve2 = await scins.approve(ContractAddresses.cdp, BigInt((amount)));
+                setmessage('Kindly Wait for the Transactions to be successfull');
+                togglePopup();
                 const receipt2 = await approve.wait();
                 const receipt3 = await approve2.wait();
-
                 console.log(receipt2, receipt3)
 
                 const payback = await vaultinstance.wipeVault(uservault.uservault[id].ino);
                 const receipt = await payback.wait();
                 if (receipt.status == true) {
+                    setdone('Done')
                     setmessage( (amount/10**18) + " Debt is paid successfully")
                     togglePopup()
                 } else {console.log(receipt)} 
@@ -113,7 +124,7 @@ const[message, setmessage] = useState('')
         content={<>
         <b>Alert</b>
         <p>{message}</p>
-        <button onClick={()=>{window.open(`/vault/access/${id}`, '_self')}}>Close</button>
+        <button onClick={()=>{togglePopup()}}>Close</button>
       </>}
       handleClose={togglePopup}
     />}

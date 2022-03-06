@@ -48,9 +48,9 @@ const VaultAccess = () => {
                 <Fragment>
                    <div className='vaultdetails'>
                     
-                    <p>Owner: {uservault.uservault[0].owner}</p>
-                    <p>Locked XDC: {(uservault.uservault[0].collateralX)/10**18}</p>
-                    <p>Locked ECOIN: {(uservault.uservault[0].collateralE)/10**10}</p>
+                    <p>Owner: {uservault.uservault[id].owner}</p>
+                    <p>Locked XDC: {(uservault.uservault[id].collateralX)/10**18}</p>
+                    <p>Locked ECOIN: {(uservault.uservault[id].collateralE)/10**10}</p>
                     <div className='vaultoptions'>
                     
                     <button onClick={()=>{window.open(`/vault/deposit/${id}`, '_self')}}  className='beautifulbtn'>Deposit Collateral</button>
