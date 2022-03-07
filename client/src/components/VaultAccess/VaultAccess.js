@@ -48,7 +48,7 @@ const VaultAccess = () => {
                 <Fragment>
                    <div className='vaultdetails'>
                     
-                    <p>Vault ID: x{uservault.uservault[id].ino.slice(-4)}</p>
+                    {/* <p>Vault ID: x{uservault.uservault[id].ino.slice(-4)}</p> */}
                     <p>Locked XDC: {(uservault.uservault[id].collateralX)/10**18}</p>
                     <p>Locked ECOIN: {(uservault.uservault[id].collateralE)/10**10}</p>
                     <div className='vaultoptions'>
