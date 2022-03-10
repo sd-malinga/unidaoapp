@@ -44,7 +44,7 @@ const cdp={
              }
              if (usercup !== "0") {
                  let uservault =[];
-                 for(i = usercup; i>0; i--){
+                 for(i = 1; i<=usercup; i++){
              const uservault2 = await cdpInstance.methods.cupNo(userwallet, i).call();
              const final = await cdpInstance.methods.cups(uservault2).call();
                         uservault.push(final);

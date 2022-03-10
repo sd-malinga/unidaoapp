@@ -1,4 +1,5 @@
 import React, { Fragment, useEffect, useState } from "react";
+import { ethers } from "ethers";
 const WalletTab = ()=> {
     
     const [walletstatus, setstatus] = useState('Connect Wallet');
@@ -18,16 +19,28 @@ const WalletTab = ()=> {
         // Check if MetaMask is installed on user's browser
         if(window.ethereum) {
             try{
-        const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
-        const chainId =  await window.ethereum.request({ method: 'eth_chainId'});
-        console.log(accounts[0], chainId)
-        setstatus('Connected');
-        setaddress(accounts[0]);
-        sessionStorage.setItem('wallet', accounts[0]);
-            } catch(err){window.alert("Please Unlock Your Wallet")}
+            /* const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
+            const chainId =  await window.ethereum.request({ method: 'eth_chainId'});
+            console.log(accounts[0], chainId) */
+            const provider = new ethers.providers.Web3Provider(window.ethereum);
+            const netid = await provider.getNetwork()
+            if (netid.chainId==51) {
+            const signer = provider.getSigner(); 
+            const accounts = await signer.getAddress(); 
+            console.log(accounts)
+            setstatus('Connected');
+            setaddress(accounts);
+            sessionStorage.setItem('wallet', accounts);
+            } else {
+                window.alert('Please change Network to Apothem')
+
+            }
+        
+
+        }  catch(err){window.alert("Please Unlock Your Wallet")}
         } else {
             // Show alert if Ethereum provider is not detected
-            window.alert("Please install MetaMask");
+            window.alert("Please install XDCPay");
         }
     };
     

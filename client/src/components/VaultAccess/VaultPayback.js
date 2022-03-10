@@ -2,7 +2,7 @@ import React, { Fragment, useEffect, useState } from 'react';
 import { getUserVault } from '../../services/cdpServices';
 import ContractAddresses from '../ContractsData/ContractAddresses.json';
 import ContractABIs from '../ContractsData/ContractABIs.json';
-import { ContractFactory, ethers } from 'ethers';
+import {  ethers } from 'ethers';
 import Popup from '../Popup';
 import { useParams } from 'react-router';
 
