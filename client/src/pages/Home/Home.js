@@ -26,7 +26,7 @@ setvault(uservault.uservault)
 }
 
 };
-
+const [ocr, setocr] = useState('0');
 const checkbalance = async()=> {
     try {
         const rpc = contractaddresses.rpc;
@@ -44,8 +44,14 @@ const checkbalance = async()=> {
                     ContractABIs.sc,
                     ContractAddresses.sc
                     );
+     const  cdpInstance = await new web3.eth.Contract(
+                        ContractABIs.cdp,
+                        ContractAddresses.cdp
+                        );
 
      console.log("check2")
+     const cdpocr = await cdpInstance.methods.ocr().call();
+     setocr(cdpocr);
      const scbalance = await scInstance.methods.balanceOf(userwallet).call();
      const govbalance = await govInstance.methods.balanceOf(userwallet).call();
      const ecoinbalance = await ecoinInstance.methods.balanceOf(userwallet).call();
@@ -194,10 +200,11 @@ useEffect(()=>{
                 <div className="homeflex">
                     <div className="glosarry">
                         <h3 style={{alignSelf: ''}}>UNIDAO at a glance</h3>  
-                        <strong>Total Locked Value (XDC): {(xdctvl)/10**18}</strong>   
-                        <strong>Total Locked Value (Ecoin): {(ecointvl)/10**10}</strong>           
+                        
+                              
                         <strong>Total XUSD Supply: {(totalsupply)/10**18}</strong>           
                         <strong>Current Tax Rate: {taxrate}%</strong> 
+                        <strong>Over- Collateralization Ratio: {(ocr)+'%'}</strong>   
                     </div>   
                    {walletshow()}          
                 </div>
