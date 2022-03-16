@@ -5,9 +5,8 @@ const bodyParser = require('body-parser');
 const helmet = require('helmet');
 const compression = require('compression');
 const path = require('path');
-
 const apiRouter = require('./routes');
-
+require('./controller/cronjobs');
 const app = express();
 const PORT = process.env.PORT || 9000;
 
