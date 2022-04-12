@@ -15,14 +15,19 @@
 }
 .maincontent{
     color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 .beautifulbtn {
         color: rgb(29, 171, 152);
     background: #ffffff21;
     border: none;
     border-radius: 10px;
-    height: 40px;
-    width: 81px;
+    /* height: 40px;
+    width: 81px; */
+    padding: 18px;
+    font-size: 20px;
 }
 .mainapp {
     display: flex;

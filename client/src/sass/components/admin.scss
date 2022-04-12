@@ -1,0 +1,19 @@
+.adminpanelcol{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px
+}
+
+.adminpanelopgrid{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    width: 600px;
+    gap: 15px;
+    align-items: center;
+}
+
+.apogd1{
+    width: 300px;
+    text-align: left;
+}

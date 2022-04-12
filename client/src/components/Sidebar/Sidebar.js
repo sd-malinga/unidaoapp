@@ -19,8 +19,12 @@ const Sidebar = ()=> {
                         <NavLink to='/vault' style={{textDecoration: 'none', color: 'white'}} activeStyle={{color: '#1dab98'}}>          
                         <h4 style={{textDecoration: 'none'}}>Vault</h4>
                         </NavLink> 
-                        <h4>Liquidations</h4>      
-                        <h4>Admin</h4>  
+                        <NavLink to='/liquidations' style={{textDecoration: 'none', color: 'white'}} activeStyle={{color: '#1dab98'}}>          
+                        <h4 style={{textDecoration: 'none'}}>Liquidations</h4>
+                        </NavLink>      
+                        <NavLink to='/admin' style={{textDecoration: 'none', color: 'white'}} activeStyle={{color: '#1dab98'}}>          
+                        <h4 style={{textDecoration: 'none'}}>Admin</h4>
+                        </NavLink>  
                      
                     </div>
                 </div>
