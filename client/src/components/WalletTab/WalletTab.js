@@ -19,18 +19,18 @@ const WalletTab = ()=> {
         // Check if MetaMask is installed on user's browser
         if(window.ethereum) {
             try{
-            /* const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
+            const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
             const chainId =  await window.ethereum.request({ method: 'eth_chainId'});
-            console.log(accounts[0], chainId) */
-            const provider = new ethers.providers.Web3Provider(window.ethereum);
-            const netid = await provider.getNetwork()
-            if (netid.chainId==51) {
-            const signer = provider.getSigner(); 
-            const accounts = await signer.getAddress(); 
-            console.log(accounts)
+            console.log(accounts[0], chainId)
+            /* const provider = new ethers.providers.Web3Provider(window.ethereum);
+            const netid = await provider.getNetwork() */
+            if (chainId==51) {
+            /* const signer = provider.getSigner(); 
+            const accounts = await signer.getAddress();  */
+            console.log(accounts[0])
             setstatus('Connected');
-            setaddress(accounts);
-            sessionStorage.setItem('wallet', accounts);
+            setaddress(accounts[0]);
+            sessionStorage.setItem('wallet', accounts[0]);
             } else {
                 window.alert('Please change Network to Apothem')
 
