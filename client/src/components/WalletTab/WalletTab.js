@@ -43,7 +43,28 @@ const WalletTab = ()=> {
             window.alert("Please install XDCPay");
         }
     };
-    
+    const connectWalletHandler = async () => {
+        try  {
+        const provider = new ethers.providers.Web3Provider(window.ethereum);
+        const netid = await provider.getNetwork()
+        if (netid.chainId ==51) {
+        const signer = provider.getSigner(); 
+        const accounts = await signer.getAddress();
+            if (accounts.length !== 0) {
+          console.log("Found an authorized account: ",provider);
+          console.log(accounts)
+            setstatus('Connected');
+            setaddress(accounts);
+            sessionStorage.setItem('wallet', accounts);
+        } else {
+          console.log("No authorized account found");
+        } } else {
+          window.alert("Set Your Network RPC to Apothem XDC Testnet")
+        }
+      }
+        catch(err){window.alert("Unlock Your Wallet")}
+      
+      }
     return(
         <Fragment>
             <div className="wallettab">
@@ -51,7 +72,7 @@ const WalletTab = ()=> {
                     {/* <p>{ address}</p> */}
                 </div>
                 <div className="connectwallet">
-                    <button onClick={()=>{connectWallet()}} style={{
+                    <button onClick={()=>{connectWalletHandler()}} style={{
                             color: 'rgb(29, 171, 152)',
                             background: 'rgba(255, 255, 255, 0.08)',
                             border: 'none',
