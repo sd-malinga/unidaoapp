@@ -6,9 +6,20 @@ import { ContractFactory, ethers } from 'ethers';
 import Popup from '../Popup';
 import { useParams } from 'react-router';
 import { checklqvbalance, checklqvrates } from '../../services/lqvServices';
+import { load } from 'dotenv';
 
 const S2X = ()=>{
     
+const [isOpen, setIsOpen] = useState(false);
+const [trxopen, settrx] = useState(false);
+const [message, setmessage]= useState('');
+const togglePopup2 = () => {
+   settrx(!trxopen);
+ }
+const togglePopup = () => {
+  setIsOpen(!isOpen);
+}
+    const [loading, setloading] = useState(false);
     const [lqvbal, setlqvbal] = useState(
         {
         ecoin: '0',
@@ -29,17 +40,16 @@ const S2X = ()=>{
 
         const lqvrate = await checklqvrates();
         setlqvrates(lqvrate);
-        
+        setloading(true);
 
     }
     useState(async()=>{
         await initdata()
     },[]);
-    console.log(lqvbal);
-
-    console.log(lqvrates);
+   
 
     const exchangefunc = async () => {
+        togglePopup2();
         const provider = new ethers.providers.Web3Provider(window.ethereum);
         const amtx = document.getElementById('xusdamt').value;
         const netid = await provider.getNetwork()
@@ -59,14 +69,20 @@ const S2X = ()=>{
             console.log(flipx);
             const cop = await flipx.wait();
             if (cop.status==true){
-            window.alert('Done')
-            window.open('/liquidations/s2x', '_self')
+                setmessage('You have successfull exchanged XUSD to XDC')
+                settrx(false)
+                togglePopup();
+            //window.alert('Done')
+            //window.open('/liquidations/s2x', '_self')
             }
             /* globals BigInt */
-            } catch(err){window.alert('Try Again')}
+            } catch(err){
+               settrx(false); setmessage('Please Try Again'); togglePopup();
+            }
         } else {window.alert('Please Connect to Apothem Network')}
     }
     const exch1 = async () => {
+        togglePopup2();
         const provider = new ethers.providers.Web3Provider(window.ethereum);
         const amtx = document.getElementById('xusdamt').value;
         const netid = await provider.getNetwork()
@@ -88,9 +104,17 @@ const S2X = ()=>{
    
             exchangefunc();
             }
-            } catch(err){window.alert('Try Again')}
+            } catch(err){                settrx(false); setmessage('Please Try Again'); togglePopup();
+        }
         } else {window.alert('Please Connect to Apothem Network')}
     }
+    if(loading==false){
+        return(
+        <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', color: 'white'}}>
+            <img src={'/loading.gif'} height={'150px'} width={'150px'} />
+        </div>
+        )
+    } else{
 return(
     <Fragment>
         <div className='maincontent'>
@@ -112,7 +136,27 @@ return(
             </div>
 
         </div>
+        <Fragment>
+               
+               {isOpen && <Popup
+       content={<>
+       <b>Alert</b>
+       <p>{message}</p>
+       <button className='beautifulbtn' style={{padding: '10px'}} onClick={()=>{window.open(`/home`, '_self')}}>Close</button>
+     </>}
+     handleClose={togglePopup}
+   />}
+   {trxopen && <Popup
+       content={<>
+       
+       <p>Kindly Wait for the transaction to get complete</p>
+       <img src={'/loading.gif'} height={'150px'} width={'150px'} />
+
+     </>}
+     handleClose={togglePopup2}
+   />}
+           </Fragment>
     </Fragment>
-)
+)}
 };
 export default S2X;

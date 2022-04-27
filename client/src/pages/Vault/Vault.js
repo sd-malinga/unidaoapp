@@ -9,6 +9,7 @@ import { getUserVault } from '../../services/cdpServices';
 import ContractABIs from '../../components/ContractsData/ContractABIs.json';
 import ContractAddresses from '../../components/ContractsData/ContractAddresses.json';
 import { ethers } from 'ethers';
+import loadlogo from '../../components/loading.gif';
 const Vault = () => {
     const [uservault, setvault] = useState('')
     const userwallet= sessionStorage.getItem('wallet');
@@ -102,8 +103,11 @@ const Vault = () => {
 
         )
     } else if (uservault ==""){
-        return(
-            <p>Please Wait</p>
+        return(<div style={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
+        <p>Please Wait</p>
+        <img src={'/loading.gif'} height={'150px'} width={'150px'} />
+        </div>
+
         )
 
     }

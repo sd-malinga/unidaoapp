@@ -22,10 +22,10 @@ const Sidebar = ()=> {
                         <NavLink to='/liquidations' style={{textDecoration: 'none', color: 'white'}} activeStyle={{color: '#1dab98'}}>          
                         <h4 style={{textDecoration: 'none'}}>Liquidations</h4>
                         </NavLink>      
-                        <NavLink to='/admin' style={{textDecoration: 'none', color: 'white'}} activeStyle={{color: '#1dab98'}}>          
+                     {/*    <NavLink to='/admin' style={{textDecoration: 'none', color: 'white'}} activeStyle={{color: '#1dab98'}}>          
                         <h4 style={{textDecoration: 'none'}}>Admin</h4>
                         </NavLink>  
-                     
+                      */}
                     </div>
                 </div>
             </div>

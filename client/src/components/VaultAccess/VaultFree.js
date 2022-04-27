@@ -11,7 +11,10 @@ const VaultFree = () => {
 const { id } = useParams()
       
 const [isOpen, setIsOpen] = useState(false);
- 
+const [trxopen, settrx] = useState(false);
+const togglePopup2 = () => {
+   settrx(!trxopen);
+ }
 const togglePopup = () => {
   setIsOpen(!isOpen);
 }
@@ -51,7 +54,8 @@ const[message, setmessage] = useState('')
      } */
     
      const handleSubmit = async (e) => {
-         e.preventDefault()
+         e.preventDefault();
+         togglePopup2()
          const amount = uservault.uservault[id].debt;
          console.log(amount);
              const netid = await provider.getNetwork()
@@ -70,6 +74,7 @@ const[message, setmessage] = useState('')
                 /* global BigInt */
                 if (uservault.uservault[id].tax != 0 ) {
                    setmessage('Please Pay the debt before requesting the collateral back')
+                   togglePopup2()
                     togglePopup();
                }
 
@@ -78,6 +83,8 @@ const[message, setmessage] = useState('')
                     const receipt = await payback.wait();
                     if (receipt.status == true) {
                         setmessage((uservault.uservault[id].collateralX/10**18) +" XDC have been transferred to your account");
+                        settrx(false)
+
                         togglePopup();
                         } else {console.log(receipt)} 
                     }
@@ -86,6 +93,8 @@ const[message, setmessage] = useState('')
                         const payback = await vaultinstance.freeEcoins(uservault.uservault[id].ino);
                         const receipt = await payback.wait();
                     if (receipt.status == true) {
+                        settrx(false)
+
                         setmessage(uservault.uservault[id].collateralE/10**10, "Ecoins have been transferred to your Account")
                         togglePopup();
                         } else {console.log(receipt)} 
@@ -103,17 +112,36 @@ const[message, setmessage] = useState('')
          }
          
          const vaultdetail= ()=>{
+             console.log(uservault)
              if (uservault != 'Checking'){
              return(
+                <>
                 <div className='vaultdetails'>
                 {/* <p>Owner: {uservault.uservault[id].owner}</p> */}
                 <p>Locked XDC: {(uservault.uservault[id].collateralX)/10**18}</p>
                 <p>Locked ECOIN: {(uservault.uservault[id].collateralE)/10**10}</p>
+                
              </div>
+             <div className='depositform'>
+             <form className='depositform-form' onSubmit={handleSubmit}>
+                 <label>Wipe Your Vault</label>
+                
+                 <button type='submit' className='beautifulbtn'>Pay Back</button>
+                                     
+             </form>
+         </div>
+         </>
              )}
-             else {
-                 console.log('Sorry')
-             }
+             else if(uservault=='Checking') {
+                 console.log('chckavi')
+                 return(
+                <>
+        
+                <p>Loading Collateral Details</p>
+                <img src={'/loading.gif'} height={'150px'} width={'150px'} />
+        
+              </>        
+                 )}
          }
      
     
@@ -124,21 +152,23 @@ const[message, setmessage] = useState('')
                 {vaultdetail()}
             </Fragment>
             <Fragment>
-                <div className='depositform'>
-                    <form className='depositform-form' onSubmit={handleSubmit}>
-                        <label>Get Your Collateral Back</label>
-                    
-                        <button type='submit' className='beautifulbtn'>Request</button>
-                                            
-                    </form>
-                </div>
+               
                 {isOpen && <Popup
         content={<>
         <b>Alert</b>
         <p>{message}</p>
-        <button onClick={()=>{window.open(`/vault/access/${id}`, '_self')}}>Close</button>
+        <button className='beautifulbtn' style={{padding: '10px'}} onClick={()=>{window.open(`/vault/access/${id}`, '_self')}}>Close</button>
       </>}
       handleClose={togglePopup}
+    />}
+    {trxopen && <Popup
+        content={<>
+        
+        <p>Kindly Wait for the transaction to get complete</p>
+        <img src={'/loading.gif'} height={'150px'} width={'150px'} />
+
+      </>}
+      handleClose={togglePopup2}
     />}
             </Fragment>
          </Fragment>

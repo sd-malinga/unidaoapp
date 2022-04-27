@@ -7,6 +7,7 @@ import Web3 from "web3";
 import { checklqvbalance, checklqvrates } from '../../services/lqvServices';
 
 const LiquidationPage = ()=>{
+    const [loading, setloading] = useState(false);
 
     const [lqvbal, setlqvbal] = useState(
         {
@@ -29,6 +30,7 @@ const LiquidationPage = ()=>{
         const lqvrate = await checklqvrates();
         setlqvrates(lqvrate);
         
+        setloading(true);
 
     }
     useState(async()=>{
@@ -37,6 +39,13 @@ const LiquidationPage = ()=>{
     console.log(lqvbal);
 
     console.log(lqvrates);
+    if(loading==false){
+        return(
+        <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', color: 'white'}}>
+            <img src={'/loading.gif'} height={'150px'} width={'150px'} />
+        </div>
+        )
+    } else{
 return(
     <Fragment>
         <div className='maincontent'>
@@ -121,6 +130,6 @@ return(
     </Fragment>
     
 )
-
+    }
 }
 export default LiquidationPage

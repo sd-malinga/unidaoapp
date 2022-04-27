@@ -10,7 +10,10 @@ const VaultDeposit = () => {
     const { id } = useParams();
 
 const [isOpen, setIsOpen] = useState(false);
- 
+ const [trxopen, settrx] = useState(false);
+ const togglePopup2 = () => {
+    settrx(!trxopen);
+  }
   const togglePopup = () => {
     setIsOpen(!isOpen);
   }
@@ -43,6 +46,7 @@ const[message, setmessage] = useState('')
      }
     
      const handleSubmit = async (e) => {
+         settrx(true)
          e.preventDefault()
          const colname = document.getElementById('colname').value;
          console.log(colname);
@@ -77,6 +81,7 @@ const[message, setmessage] = useState('')
                 const receipt = await deposit.wait();
                 if (receipt.status == true) {
                     setmessage("XUSD has been deposited to your wallet successfully.")
+                    settrx(false)
                     togglePopup()
                 } else {console.log(receipt)} 
             
@@ -103,6 +108,8 @@ const[message, setmessage] = useState('')
                 const receipt = await deposit.wait();
                 if (receipt.status == true) {
                     setmessage("XUSD has been deposited to your wallet successfully.")
+                    settrx(false)
+
                     togglePopup()
                 } else {console.log(receipt)} 
             
@@ -129,11 +136,21 @@ const[message, setmessage] = useState('')
             </div>
             {isOpen && <Popup
         content={<>
-        <b>Alert</b>
+        <b> 
+Congratulations</b>
         <p>{message}</p>
-        <button onClick={()=>{window.open(`/vault/access/${id}`, '_self')}}>Close</button>
+        <button className='beautifulbtn' style={{padding: '10px'}} onClick={()=>{window.open(`/vault/access/${id}`, '_self')}}>Close</button>
       </>}
       handleClose={togglePopup}
+    />}
+    {trxopen && <Popup
+        content={<>
+        
+        <p>Kindly Wait for the transaction to get complete</p>
+        <img src={'/loading.gif'} height={'150px'} width={'150px'} />
+
+      </>}
+      handleClose={togglePopup2}
     />}
          </Fragment>
 

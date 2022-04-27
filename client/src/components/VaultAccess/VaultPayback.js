@@ -10,7 +10,10 @@ const VaultPayback = () => {
     const [done, setdone] = useState('');
     const { id } = useParams();
 const [isOpen, setIsOpen] = useState(false);
- 
+const [trxopen, settrx] = useState(false);
+const togglePopup2 = () => {
+   settrx(!trxopen);
+ }
 const togglePopup = () => {
   setIsOpen(!isOpen);
   if(done =='Done'){
@@ -82,10 +85,15 @@ const[message, setmessage] = useState('')
                 console.log(receipt2, receipt3)
 
                 const payback = await vaultinstance.wipeVault(uservault.uservault[id].ino);
+                setIsOpen(false);
+                settrx(true)
                 const receipt = await payback.wait();
+              
                 if (receipt.status == true) {
                     setdone('Done')
-                    setmessage( (amount/10**18) + " Debt is paid successfully")
+                    settrx(false);
+                    togglePopup();
+                    setmessage( "Debt is paid successfully")
                     togglePopup()
                 } else {console.log(receipt)} 
             
@@ -97,14 +105,32 @@ const[message, setmessage] = useState('')
          const vaultdetail= ()=>{
             if (uservault != 'Checking'){
             return(
+                <>
                <div className='vaultdetails'>
                {/* <p>Owner: {uservault.uservault[id].owner}</p> */}
                <p>Debt: {(uservault.uservault[id].debt)/10**18} XUSD</p>
                <p>Stability Fees: {(uservault.uservault[id].tax)/10**18} UDAO</p>
+               
             </div>
+            <div className='depositform'>
+            <form className='depositform-form' onSubmit={handleSubmit}>
+                <label>Wipe Your Vault</label>
+               
+                <button type='submit' className='beautifulbtn'>Pay Back</button>
+                                    
+            </form>
+        </div>
+        </>
             )}
             else {
-                console.log('Sorry')
+                return(
+                    <>
+        
+        <p>Loading Debt Details</p>
+        <img src={'/loading.gif'} height={'150px'} width={'150px'} />
+
+      </>
+                )
             }
         }
      
@@ -112,21 +138,23 @@ const[message, setmessage] = useState('')
      return(
          <Fragment>
              {vaultdetail()}
-            <div className='depositform'>
-                <form className='depositform-form' onSubmit={handleSubmit}>
-                    <label>Wipe Your Vault</label>
-                   
-                    <button type='submit' className='beautifulbtn'>Pay Back</button>
-                                        
-                </form>
-            </div>
+          
             {isOpen && <Popup
         content={<>
         <b>Alert</b>
         <p>{message}</p>
-        <button onClick={()=>{togglePopup()}}>Close</button>
+        <button className='beautifulbtn' style={{padding: '10px'}} onClick={()=>{window.open(`/vault/access/${id}`, '_self')}}>Close</button>
       </>}
       handleClose={togglePopup}
+    />}
+     {trxopen && <Popup
+        content={<>
+        
+        <p>Kindly Wait for the transaction to get complete</p>
+        <img src={'/loading.gif'} height={'150px'} width={'150px'} />
+
+      </>}
+      handleClose={togglePopup2}
     />}
          </Fragment>
 

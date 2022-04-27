@@ -79,7 +79,10 @@ const VaultAccess = () => {
         )
     } else if (uservault ==""){
         return(
-            <p>Please Wait</p>
+            <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
+    <p>Please Wait</p>
+    <img src={'/loading.gif'} height={'150px'} width={'150px'} />
+    </div>
         )
 
     }
