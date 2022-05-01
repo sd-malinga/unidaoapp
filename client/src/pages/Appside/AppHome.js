@@ -83,7 +83,7 @@ const AppHome = ()=> {
                             borderRadius: '10px',
                             height: '40px',
                             width: '81px'
-                        }} onClick={()=>{window.open('/wpsite/index.html')}}>Learn More</button>
+                        }} onClick={()=>{window.open('/wpsite/index.html', '_self')}}>Learn More</button>
                         <button style={{
                             color: 'rgb(29, 171, 152)',
                             background: 'rgba(255, 255, 255, 0.08)',
