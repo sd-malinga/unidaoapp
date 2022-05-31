@@ -1,5 +1,6 @@
 {
-    "rpc": "https://rpc.apothem.network",
+    "rpc": "https://boiling-taiga-83466.herokuapp.com/https://rpc.apothem.network",
+    "rpc2": "https://rpc.apothem.network",
     "cdp": [
         {
             "constant": true,

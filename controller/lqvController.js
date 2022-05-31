@@ -13,7 +13,9 @@ const web3= new Web3(rpc);
 
 let lqvInstance;
 async function init(){
+
 const networkId = await web3.eth.net.getId();
+
 lqvInstance = await new web3.eth.Contract(
   finalcontractabi,
   finalcontract);

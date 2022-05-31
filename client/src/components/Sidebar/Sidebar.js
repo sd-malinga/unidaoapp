@@ -10,7 +10,7 @@ const Sidebar = ()=> {
         <Fragment>
             <div className="sidebar">
                 <div className="sidebar_content">
-                    <img alt ="logo" src='https://unidao-gmann.ondigitalocean.app/assets/Fyqg9KY.png' style={{width: '200px'}} />
+                    <img alt ="logo" src='https://unidaonetwork.com/static/media/Fyqg9KY.44cd8e8d.png' style={{width: '200px'}} />
   
                     <div className="sidebar_options" style={{textDecoration: 'none'}}>
                         <NavLink to='/home' style={{textDecoration: 'none', color: 'white'}} activeStyle={{color: '#1dab98'}}>

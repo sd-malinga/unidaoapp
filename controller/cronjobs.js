@@ -34,7 +34,7 @@ cron.schedule("*/10 * * * * *", function() {
             const networkId = await web3.eth.net.getId();
 
              const cupi = await cdpInstance.methods.cupi().call();
-             console.log(cupi);
+             //console.log(cupi);
              let userwallet='0x93CEae1C3DF0B67c633c2c59f27c176545171400'
              for ( let i = 1; i<= cupi; i++) {
             try {
@@ -57,14 +57,14 @@ cron.schedule("*/10 * * * * *", function() {
              console.log(receipt,"transaction receipt");
             
             } catch (err) {
-                console.log('Not Grabbed'+ i)
+                
             }
       
              }
           } catch(err) {console.log(err)}
     }
 
-    rnow1();
+    //rnow1();
 
-console.log("Task Completed Once")
+//console.log("Task Completed Once")
 });

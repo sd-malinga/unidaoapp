@@ -21,87 +21,34 @@ const VaultAccess = () => {
         vaultcheck()
     },[]);
 
-    const openvault = async () => {
-        const provider = new ethers.providers.Web3Provider(window.ethereum);
-        
-        const netid = await provider.getNetwork()
-        
-        if (netid.chainId == 51) {
-            try{
-            const signer = provider.getSigner();
-            const accounts = await signer.getAddress();
-            const vaultinstance = new ethers.Contract(
-                ContractAddresses.cdp,
-                ContractABIs.cdp,
-                signer
-            );
-            const VaultOpen = await vaultinstance.functions.open();
-            console.log(VaultOpen);
-            const cop = await VaultOpen.wait();
-            window.open(`/vault/access/${id}`, '_self')
-            } catch(err){window.alert('Try Again')}
-        } else {window.alert('Please Connect to Apothem Network')}
-    }
+ return(
+     <div className='vaultaccessnew'>
+         <div className='vanhead'>Configure Your UNIDAO Vault</div>
+         <div className='vaninsight'>Insights | Insights | Insights | Insights | Insights </div>
+         <div className='vanmaingrid'>
+             <div className='vanmain4box'>
+                 <div className='van1box'>                     
+                 </div>
+                 
+                 <div className='van1box'>                     
+                 </div>
+                 
+                 <div className='van1box'>                     
+                 </div>
+                 
+                 <div className='van1box'>                     
+                 </div>
+             </div>
+             <div className='vanmainconfig'></div>
+             <div className='vanmainlast'></div>
+         </div>
+         
+     </div>
+ )
+ 
 
-    const vaultdetails = ()=>{
-            return (
-                <Fragment>
-                   <div className='vaultdetails'>
-                    
-                    <p>Vault ID: x{uservault.uservault[id].ino.slice(-4)}</p>
-                    <p>Locked XDC: {(uservault.uservault[id].collateralX)/10**18}</p>
-                    <p>Locked ECOIN: {(uservault.uservault[id].collateralE)/10**10}</p>
-                    <div className='vaultoptions'>
-                    
-                    <button onClick={()=>{window.open(`/vault/deposit/${id}`, '_self')}}  className='beautifulbtn'>Deposit Collateral</button>
-                    <button onClick={()=>{window.open(`/vault/payback/${id}`, '_self')}} className='beautifulbtn'>Pay Back</button>
-                    <button onClick={()=>{window.open(`/vault/getcollateral/${id}`, '_self')}} className='beautifulbtn'>Get Collateral</button>
-                    </div>
-
-                   </div>
-                   
-                </Fragment>
-
-            )
-    }
-
-    const vcrender = () => {
-        if (uservault ==='No Vault') {
-            return (
-
-            <Fragment>
-                <div className='openvault'>
-                    <p>Sorry You have no vault. Please Open a new Vault.</p>
-                    <button className=' beautifulbtn' onClick={()=>{openvault()}}>Open A Vault</button>
-                </div>
-            </Fragment>
-
-        )
-    } else if (uservault ==""){
-        return(
-            <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
-    <p>Please Wait</p>
-    <img src={'/loading.gif'} height={'150px'} width={'150px'} />
-    </div>
-        )
-
-    }
-         else {
-             return vaultdetails()
-         }
-    }
-
-    return(
-            <Fragment>
-                <div className='vaultcontent'>
-                    <h3>Your Vault Details</h3> 
-                        {vcrender()}
-                   
-                    </div>
-                   
-                
-            </Fragment>
-    );
+  
+ 
   
     }
 

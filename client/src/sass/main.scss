@@ -1,7 +1,12 @@
+@font-face {
+    font-family: Inter;
+    src: url('./fonts/Inter-Regular.ttf');
+  }
 @import './sidebar/sidebar.scss';
 @import './app/app.scss';
 @import './connectwallet/connectwallet.scss';
 @import './home/home.scss';
 @import './components/vault.scss';
 @import './components/admin.scss';
-@import './components/liquidation.scss'
+@import './components/liquidation.scss';
+@import './components/borrow.scss';

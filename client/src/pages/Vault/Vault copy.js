@@ -10,8 +10,6 @@ import ContractABIs from '../../components/ContractsData/ContractABIs.json';
 import ContractAddresses from '../../components/ContractsData/ContractAddresses.json';
 import { ethers } from 'ethers';
 import loadlogo from '../../components/loading.gif';
-import VaultBox from '../../components/VaultAccess/VaultBox';
-import NewVaultButton from '../../components/ConnectWalletButton/NewVault';
 const Vault = () => {
     const [uservault, setvault] = useState('')
     const userwallet= sessionStorage.getItem('wallet');
@@ -64,28 +62,13 @@ const Vault = () => {
         }
     
     }
-    const rendervaults = ()=> {
-        const finalvault = (uservault.filter(item=>item.collateralE != '0' || item.collateralX != '0'))
 
+    const rendervaults = ()=> {
           return (
-            <div className="homevaultflex" style={{width: '100vw'}}>
-            {finalvault.map((item, idx)=>{
+            uservault.map((item, idx)=>{
                 return(
-                      <Fragment>
-{/*                           <button className='beautifulbtn' onClick={()=>{entervault(idx)}}>Access Vault {idx +1}</button> */}                        
-                        <VaultBox
-                        key={idx}
-                        idx={idx} 
-                        vaultId={item.ino} 
-                        ecoin={item.collateralE} 
-                        xdc={item.collateralX} 
-                        xusd={item.debt} 
-                        udao={item.tax} 
-                        />
-                      </Fragment>
-            )})}
-            
-             </div>
+            <button className='beautifulbtn' onClick={()=>{entervault(idx)}}>Access Vault {idx +1}</button>
+            )})
            ) }
       
         
@@ -97,12 +80,9 @@ const Vault = () => {
                    <div className='openvault' style={{
                        gap: '10px'
                    }}>
-                    <h3 className='unidaohead'>UNIDAO Vaults</h3>    
-
-                    <NewVaultButton style='dark'/>
-                    <br />
+                    
                    {rendervaults()}
-                   
+                   <button className='beautifulbtn' onClick={()=>{openvault()}}>Create New Vault </button>
                    </div>
                    
                 </Fragment>
@@ -116,8 +96,6 @@ const Vault = () => {
 
             <Fragment>
                 <div className='openvault'>
-                <h3 className='unidaohead'>UNIDAO Vaults</h3>    
-
                     <p>Sorry You have no vault. Please Open a new Vault.</p>
                     <button className=' beautifulbtn' onClick={()=>{openvault()}}>Open A Vault</button>
                 </div>
@@ -126,7 +104,7 @@ const Vault = () => {
         )
     } else if (uservault ==""){
         return(<div style={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
-        {/* <p>Please Wait</p> */}
+        <p>Please Wait</p>
         <img src={'/loading.gif'} height={'150px'} width={'150px'} />
         </div>
 
@@ -141,6 +119,7 @@ const Vault = () => {
     return(
             <Fragment>
                 <div className='maincontent'>
+                    <h3>Welcome to UNIDAO Vaults</h3>    
 
                    
                     <Switch>

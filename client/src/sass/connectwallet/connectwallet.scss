@@ -3,7 +3,7 @@
     display: flex;
     flex-direction: row;
     //background-color: rgb(187, 226, 226);
-    color: white;
+    color: black;
     height: 10vh;
     align-items: center;
     justify-content: space-between;
@@ -12,4 +12,52 @@
 .connectwallet{
     right:0px;
     position: absolute;
+}
+
+.connectwalletbutton_white{
+    width: 197px;
+    height: 41.2px;
+    border-color: transparent;
+    background: #FFFFFF;
+    mix-blend-mode: normal;
+    border-radius: 30px;
+    flex-direction: row;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    font-family: 'Inter';
+font-style: normal;
+font-weight: 400;
+font-size: 16px;
+line-height: 19px;
+}
+.connectwalletbutton_dark{
+    width: 197px;
+    height: 41.2px;
+    border-color: transparent;
+    background:#25273D;
+    ;
+    mix-blend-mode: normal;
+    border-radius: 30px;
+    flex-direction: row;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    font-family: 'Inter';
+font-style: normal;
+font-weight: 400;
+font-size: 16px;
+line-height: 19px;
+color: white;
+}
+.connectwalletbutton_dark:hover{
+    gap: 30px;
+    box-shadow: 0px 0px 0px 3px #00000029;
+}
+ .connectwalletbutton_white:hover{
+    gap: 30px;
+    box-shadow: 0px 0px 0px 3px #00000029;
+    transition:ease-in-out;
 }

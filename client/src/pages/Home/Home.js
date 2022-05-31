@@ -29,7 +29,7 @@ setvault(uservault.uservault)
 const [ocr, setocr] = useState('0');
 const checkbalance = async()=> {
     try {
-        const rpc = contractaddresses.rpc;
+        const rpc = contractaddresses.rpc2;
         const web3= new Web3(rpc);
         const  ecoinInstance = await new web3.eth.Contract(
             ContractABIs.ecoin,
