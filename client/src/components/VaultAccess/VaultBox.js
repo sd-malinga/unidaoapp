@@ -12,7 +12,7 @@ const VaultBox = ({idx, vaultId, ecoin, xdc, xusd, udao})=>{
         var xcp = await axios.get('https://boiling-taiga-83466.herokuapp.com/https://api.probit.com/api/exchange/v1/ticker?market_ids=XDC-USDT');
         var ecp = ecp.data.data[0].last;
         var xcp = xcp.data.data[0].last;
-        var col = (ecoin/10**18)* ecp + (xdc/10**18)* xcp;
+        var col = (ecoin/10**10)* ecp + (xdc/10**18)* xcp;
         setcprice(col);
         console.log(col)
     };
@@ -36,7 +36,7 @@ const VaultBox = ({idx, vaultId, ecoin, xdc, xusd, udao})=>{
                     Current Collateral Price
                     </div>
                     <div>
-                    ${colprice}
+                    ${Math.round(colprice)}
                     </div>
                 </div>
                 <div className='borrowtablerow'>
@@ -65,11 +65,11 @@ const VaultBox = ({idx, vaultId, ecoin, xdc, xusd, udao})=>{
                 </div>
             </div>
             <br />
-            <Link to={'/vault/access/'+(vid-1)} style={{textDecoration: 'none', color: 'black'}}>
-            <div className='newbtnboxdiv'>
+           
+            <div className='newbtnboxdiv' onClick={()=>{window.open(`/vault/access/${vid-1}`, '_self')}}>
                 Access Vault
             </div>
-            </Link>
+         
         </div>
     )
 }

@@ -11,6 +11,7 @@ const rpc = contractaddresses.rpc;
 const web3= new Web3(rpc);
 
 let cdpInstance;
+let usercdp =[];
 async function init(){
 const networkId = await web3.eth.net.getId();
  cdpInstance = await new web3.eth.Contract(
@@ -48,6 +49,7 @@ const cdp={
              const uservault2 = await cdpInstance.methods.cupNo(userwallet, i).call();
              const final = await cdpInstance.methods.cups(uservault2).call();
                         uservault.push(final);
+
             }
              return res.status(200).json({uservault})
              } else {return res.status(200).json("No Vault")}
